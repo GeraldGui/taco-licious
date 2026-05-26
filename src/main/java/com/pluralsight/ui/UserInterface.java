@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.enums.*;
 import com.pluralsight.order.Order;
 
 import java.util.Scanner;
@@ -64,36 +65,9 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("---------- Build Your Taco ----------");
-            System.out.println("1. Single");
-            System.out.println("2. 3-Taco");
-            System.out.println("3. Burrito");
-
-            System.out.print("Enter your choice: ");
-            int taco = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.println("---------- Select Your Shell ----------");
-            System.out.println("1. Corn");
-            System.out.println("2. Flour");
-            System.out.println("3. Hard Shell");
-            System.out.println("4. Bowl");
-
-            System.out.print("Enter your choice: ");
-            int shell = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.println("---------- Select Your Meat ----------");
-            System.out.println("1. Carne Asada");
-            System.out.println("2. Al Pastor");
-            System.out.println("3. Carnitas");
-            System.out.println("4. Pollo");
-            System.out.println("5. Chorizo");
-            System.out.println("6. Pescado");
-
-            System.out.print("Enter your choice: ");
-            int meat = scanner.nextInt();
-            scanner.nextLine();
+            TacoSize taco = chooseTacoSize();
+            ShellType shell = chooseShell();
+            MeatType meat = chooseMeat();
 
             System.out.println("Would you like extra meat?");
             System.out.println("Single +0.50 | 3-Taco +1.00 | Burrito +1.50");
@@ -105,16 +79,7 @@ public class UserInterface {
             int extraMeat = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("---------- Select Your Cheese ----------");
-            System.out.println("1. Queso Fresco");
-            System.out.println("2. Oaxaca");
-            System.out.println("3. Cotija");
-            System.out.println("4. Cheddar");
-            System.out.println("5. No Cheese");
-
-            System.out.print("Enter your choice: ");
-            int cheese = scanner.nextInt();
-            scanner.nextLine();
+            CheeseType cheese = chooseCheese();
 
             System.out.println("Would you like extra cheese?");
             System.out.println("Single +0.30 | 3-Taco +0.60 | Burrito +0.90");
@@ -126,32 +91,172 @@ public class UserInterface {
             int extraCheese = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("---------- Select Your Toppings ----------");
-            System.out.println("1. Lettuce");
-            System.out.println("2. Cilantro");
-            System.out.println("3. Onions");
-            System.out.println("4. Tomatoes");
-            System.out.println("5. Jalapenos");
-            System.out.println("6. Radishes");
-            System.out.println("7. Pico de Gallo");
-            System.out.println("8. Guacamole");
-            System.out.println("9. Corn");
-            System.out.println("0. Done selecting");
+            ToppingType topping = chooseType();
+            SauceType sauce = chooseSauce();
 
-            System.out.print("Enter your choice: ");
-            int toppings = scanner.nextInt();
-            scanner.nextLine();
 
-            System.out.println("---------- Select Your Sauce (Free) ----------");
-            System.out.println("1. Salsa Verde");
-            System.out.println("2. Salsa Roja");
-            System.out.println("3. Chipotle");
-            System.out.println("4. Habanero");
-            System.out.println("5. Mild");
-            System.out.println("6. Extra Hot");
-            System.out.println("7. No Sauce");
+
+
 
         }
+    }
+    public TacoSize chooseTacoSize() {
+        System.out.println("---------- Build Your Taco ----------");
+        System.out.println("1. Single");
+        System.out.println("2. 3-Taco");
+        System.out.println("3. Burrito");
+
+        System.out.print("Enter your choice: ");
+        int taco = scanner.nextInt();
+        scanner.nextLine();
+
+        return switch (taco) {
+            case 1 -> TacoSize.SINGLE;
+            case 2 -> TacoSize.THREE_TACO;
+            case 3 -> TacoSize.BURRITO;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
+    }
+
+    public ShellType chooseShell() {
+        System.out.println("---------- Select Your Shell ----------");
+        System.out.println("1. Corn");
+        System.out.println("2. Flour");
+        System.out.println("3. Hard Shell");
+        System.out.println("4. Bowl");
+
+        System.out.print("Enter your choice: ");
+        int shell = scanner.nextInt();
+        scanner.nextLine();
+
+        return switch (shell) {
+            case 1 -> ShellType.CORN;
+            case 2 -> ShellType.FLOUR;
+            case 3 -> ShellType.HARD_SHELL;
+            case 4 -> ShellType.BOWL;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
+    }
+
+    public MeatType chooseMeat() {
+        System.out.println("---------- Select Your Meat ----------");
+        System.out.println("1. Carne Asada");
+        System.out.println("2. Al Pastor");
+        System.out.println("3. Carnitas");
+        System.out.println("4. Pollo");
+        System.out.println("5. Chorizo");
+        System.out.println("6. Pescado");
+
+        System.out.print("Enter your choice: ");
+        int meat = scanner.nextInt();
+        scanner.nextLine();
+
+        return switch (meat) {
+            case 1 -> MeatType.CARNE_ASADA;
+            case 2 -> MeatType.AL_PASTOR;
+            case 3 -> MeatType.CARNITAS;
+            case 4 -> MeatType.POLLO;
+            case 5 -> MeatType.CHORIZO;
+            case 6 -> MeatType.PESCADO;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
+    }
+
+    public CheeseType chooseCheese() {
+        System.out.println("---------- Select Your Cheese ----------");
+        System.out.println("1. Queso Fresco");
+        System.out.println("2. Oaxaca");
+        System.out.println("3. Cotija");
+        System.out.println("4. Cheddar");
+        System.out.println("5. No Cheese");
+
+        System.out.print("Enter your choice: ");
+        int cheese = scanner.nextInt();
+        scanner.nextLine();
+
+        return switch (cheese) {
+            case 1 -> CheeseType.QUESO_FRESCO;
+            case 2 -> CheeseType.OAXACA;
+            case 3 -> CheeseType.COTIJA;
+            case 4 -> CheeseType.CHEDDAR;
+            case 5 -> CheeseType.NONE;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
+    }
+
+    public ToppingType chooseType() {
+        System.out.println("---------- Select Your Toppings ----------");
+        System.out.println("1. Lettuce");
+        System.out.println("2. Cilantro");
+        System.out.println("3. Onions");
+        System.out.println("4. Tomatoes");
+        System.out.println("5. Jalapenos");
+        System.out.println("6. Radishes");
+        System.out.println("7. Pico de Gallo");
+        System.out.println("8. Guacamole");
+        System.out.println("9. Corn");
+        System.out.println("0. Done selecting");
+
+        System.out.print("Enter your choice: ");
+        int toppings = scanner.nextInt();
+        scanner.nextLine();
+
+        return switch (toppings) {
+            case 1 -> ToppingType.LETTUCE;
+            case 2 -> ToppingType.CILANTRO;
+            case 3 -> ToppingType.ONIONS;
+            case 4 -> ToppingType.TOMATOES;
+            case 5 -> ToppingType.JALAPENOS;
+            case 6 -> ToppingType.RADISHES;
+            case 7 -> ToppingType.PICO_DE_GALLO;
+            case 8 -> ToppingType.GUACAMOLE;
+            case 9 -> ToppingType.CORN;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
+    }
+
+    public SauceType chooseSauce() {
+        System.out.println("---------- Select Your Sauce (Free) ----------");
+        System.out.println("1. Salsa Verde");
+        System.out.println("2. Salsa Roja");
+        System.out.println("3. Chipotle");
+        System.out.println("4. Habanero");
+        System.out.println("5. Mild");
+        System.out.println("6. Extra Hot");
+        System.out.println("7. No Sauce");
+
+        System.out.print("Enter your choice: ");
+        int sauce = scanner.nextInt();
+        scanner.nextLine();
+
+        return switch (sauce) {
+            case 1 -> SauceType.SALSA_VERDE;
+            case 2 -> SauceType.SALSA_ROJA;
+            case 3 -> SauceType.CHIPOTLE;
+            case 4 -> SauceType.HABANERO;
+            case 5 -> SauceType.MILD;
+            case 6 -> SauceType.EXTRA_HOT;
+            case 7 -> SauceType.NONE;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
     }
 
     public void addDrink() {

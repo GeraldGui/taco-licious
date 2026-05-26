@@ -1,16 +1,15 @@
 package com.pluralsight.order;
 
-import com.pluralsight.menu.MenuItem;
+import com.pluralsight.menu.IPriceable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Order {
     private String orderID;
     private LocalDateTime orderDate;
-    private List<MenuItem> items;
+    private List<IPriceable> items;
 
     public Order() {
         this.orderID = null;
@@ -22,7 +21,7 @@ public class Order {
         return orderID;
     }
 
-    public void addItem(MenuItem item) {
+    public void addItem(IPriceable item) {
 
     }
 
