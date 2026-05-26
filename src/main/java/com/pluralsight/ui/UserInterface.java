@@ -14,8 +14,23 @@ public class UserInterface {
     }
 
     public void displayHomeScreen() {
+        boolean quit = false;
 
+        while (!quit) {
+            System.out.println("---------- Menu ----------");
+            System.out.println("1. New Order");
+            System.out.println("2. Exit");
 
+            System.out.print("Enter your choice: ");
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1" -> newOrder();
+                case "2" -> quit = true;
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+        scanner.close();
     }
 
     public void newOrder() {
