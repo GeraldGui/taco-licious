@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class Order {
-    String orderID;
-    LocalDateTime orderDate;
-    List<MenuItem> items;
+    private String orderID;
+    private LocalDateTime orderDate;
+    private List<MenuItem> items;
 
     public Order() {
         this.orderID = null;
