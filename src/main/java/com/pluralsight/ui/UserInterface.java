@@ -76,8 +76,7 @@ public class UserInterface {
             System.out.println("2. No");
 
             System.out.print("Enter your choice: ");
-            int extraMeat = scanner.nextInt();
-            scanner.nextLine();
+            int extraMeat = getChoice();
 
             CheeseType cheese = chooseCheese();
 
@@ -88,16 +87,12 @@ public class UserInterface {
             System.out.println("2. No");
 
             System.out.print("Enter your choice: ");
-            int extraCheese = scanner.nextInt();
-            scanner.nextLine();
+            int extraCheese = getChoice();
 
             ToppingType topping = chooseType();
             SauceType sauce = chooseSauce();
 
-
-
-
-
+            quit = true;
         }
     }
     public TacoSize chooseTacoSize() {
@@ -107,8 +102,7 @@ public class UserInterface {
         System.out.println("3. Burrito");
 
         System.out.print("Enter your choice: ");
-        int taco = scanner.nextInt();
-        scanner.nextLine();
+        int taco = getChoice();
 
         return switch (taco) {
             case 1 -> TacoSize.SINGLE;
@@ -129,8 +123,7 @@ public class UserInterface {
         System.out.println("4. Bowl");
 
         System.out.print("Enter your choice: ");
-        int shell = scanner.nextInt();
-        scanner.nextLine();
+        int shell = getChoice();
 
         return switch (shell) {
             case 1 -> ShellType.CORN;
@@ -154,8 +147,7 @@ public class UserInterface {
         System.out.println("6. Pescado");
 
         System.out.print("Enter your choice: ");
-        int meat = scanner.nextInt();
-        scanner.nextLine();
+        int meat = getChoice();
 
         return switch (meat) {
             case 1 -> MeatType.CARNE_ASADA;
@@ -180,8 +172,7 @@ public class UserInterface {
         System.out.println("5. No Cheese");
 
         System.out.print("Enter your choice: ");
-        int cheese = scanner.nextInt();
-        scanner.nextLine();
+        int cheese = getChoice();
 
         return switch (cheese) {
             case 1 -> CheeseType.QUESO_FRESCO;
@@ -210,8 +201,7 @@ public class UserInterface {
         System.out.println("0. Done selecting");
 
         System.out.print("Enter your choice: ");
-        int toppings = scanner.nextInt();
-        scanner.nextLine();
+        int toppings = getChoice();
 
         return switch (toppings) {
             case 1 -> ToppingType.LETTUCE;
@@ -257,6 +247,21 @@ public class UserInterface {
                 yield null;
             }
         };
+    }
+
+    public int getChoice() {
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+                return choice;
+            }
+            else {
+                System.out.println("Invalid input.");
+                scanner.nextLine();
+            }
+        }
+
     }
 
     public void addDrink() {
