@@ -15,16 +15,12 @@ public class Drinks implements IPriceable {
         return "";
     }
 
-    public double getPrice(DrinkSize size) {
-        return switch (size) {
+    @Override
+    public double getPrice() {
+        return switch (DrinkSize.valueOf(size)) {
             case SMALL -> 2.00;
             case MEDIUM -> 2.50;
             case LARGE -> 3.00;
         };
-    }
-
-    @Override
-    public double getPrice() {
-        return 0.0;
     }
 }

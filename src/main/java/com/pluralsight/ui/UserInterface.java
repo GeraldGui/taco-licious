@@ -1,7 +1,6 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.enums.*;
-import com.pluralsight.menu.Drinks;
 import com.pluralsight.menu.Taco;
 import com.pluralsight.order.Order;
 
@@ -38,6 +37,8 @@ public class UserInterface {
     }
 
     public void newOrder() {
+        currentOrder = new Order();
+
         boolean quit = false;
 
         while (!quit) {
@@ -69,8 +70,8 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            ShellType shell = chooseShell();
             TacoSize tacoSize = chooseTacoSize();
+            ShellType shell = chooseShell();
             MeatType meat = chooseMeat();
 
             System.out.println("Would you like extra meat?");
@@ -81,6 +82,7 @@ public class UserInterface {
 
             System.out.print("Enter your choice: ");
             int extraMeat = getChoice(1, 2);
+            boolean hasExtraMeat = extraMeat == 1;
 
             CheeseType cheese = chooseCheese();
 
@@ -92,11 +94,13 @@ public class UserInterface {
 
             System.out.print("Enter your choice: ");
             int extraCheese = getChoice(1, 2);
+            boolean hasExtraCheese = extraCheese == 1;
 
             ToppingType regularTopping = chooseType();
-            SalsaType salsa = chooseSauce();
+            SalsaType salsaType = chooseSauce();
+            SideType sideType = chooseSide();
 
-            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), cheese.name(), salsa.name());
+            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, salsaType.name(), sideType.name());
             taco.addIngredients(regularTopping);
             currentOrder.addItem(taco);
 
@@ -177,17 +181,15 @@ public class UserInterface {
         System.out.println("2. Oaxaca");
         System.out.println("3. Cotija");
         System.out.println("4. Cheddar");
-        System.out.println("5. No Cheese");
 
         System.out.print("Enter your choice: ");
-        int cheese = getChoice(1, 5);
+        int cheese = getChoice(1, 4);
 
         return switch (cheese) {
             case 1 -> CheeseType.QUESO_FRESCO;
             case 2 -> CheeseType.OAXACA;
             case 3 -> CheeseType.COTIJA;
             case 4 -> CheeseType.CHEDDAR;
-            case 5 -> CheeseType.NONE;
             default -> {
                 System.out.println("Invalid Choice!");
                 yield null;
@@ -256,25 +258,24 @@ public class UserInterface {
         };
     }
 
-    public int getChoice(int min, int max) {
-        while (true) {
-            if (scanner.hasNextInt()) {
-                int choice = scanner.nextInt();
-                scanner.nextLine();
+    public SideType chooseSide() {
+        System.out.println("---------- Select Your Side ----------");
+        System.out.println("1. Lime Wedges");
+        System.out.println("2. Crema");
 
-                if (choice >= min && choice <= max) {
-                    return choice;
-                }
+        System.out.print("Enter your choice: ");
+        int side = getChoice(1, 2);
 
-                System.out.println("Please enter valid number.");
+        return switch (side) {
+            case 1 -> SideType.LIME_WEDGES;
+            case 2 -> SideType.CREAMA;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
             }
-            else {
-                System.out.println("Invalid input.");
-                scanner.nextLine();
-            }
-        }
-
+        };
     }
+
 
     public DrinkSize getDrinkSize(){
         System.out.println("---------- Select Your Drink Size ----------");
@@ -347,7 +348,28 @@ public class UserInterface {
 
     }
 
+    public int getChoice(int min, int max) {
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+
+                if (choice >= min && choice <= max) {
+                    return choice;
+                }
+
+                System.out.println("Please enter valid number.");
+            }
+            else {
+                System.out.println("Invalid input.");
+                scanner.nextLine();
+            }
+        }
+
+    }
+
     public void checkout() {
+        System.out.println("Your total is: " + currentOrder.getTotalPrice());
 
     }
 }

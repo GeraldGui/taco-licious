@@ -1,9 +1,8 @@
 package com.pluralsight.toppings;
 
-import com.pluralsight.enums.TacoSize;
 import com.pluralsight.menu.Taco;
 
-public  abstract class Toppings extends Taco {
+public abstract class Toppings extends Taco {
     private String toppingName;
 
     public Toppings(String toppingName) {
@@ -16,7 +15,7 @@ public  abstract class Toppings extends Taco {
     }
 
     @Override
-    public double getPrice(TacoSize size) {
+    public double getPrice() {
         return 0.0;
     }
 }

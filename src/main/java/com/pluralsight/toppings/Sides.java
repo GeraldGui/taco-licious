@@ -10,7 +10,7 @@ public class Sides extends Toppings{
     }
 
     @Override
-    public double getPrice(TacoSize size) {
+    public double getPrice() {
         return 0.0;
     }
 }

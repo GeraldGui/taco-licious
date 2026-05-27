@@ -28,11 +28,12 @@ public class Order {
     }
 
     public double getTotalPrice() {
-        double total;
+        double total = 0;
 
         for (IPriceable item: items) {
             total += item.getPrice();
         }
+        return total;
     }
 
     public boolean isValidOrder() {
