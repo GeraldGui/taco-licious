@@ -4,17 +4,17 @@ public class Taco implements IPriceable{
     private String shell;
     private String size;
     private String meat;
-    private boolean hasQueso;
-    private boolean hasSalsa;
+    private String cheese;
+    private String salsa;
 
 
 
-    public Taco(String shell, String size, String meat, boolean hasQueso, boolean hasSalsa) {
+    public Taco(String shell, String size, String meat, String cheese, String salsa) {
         this.shell = shell;
         this.size = size;
         this.meat = meat;
-        this.hasQueso = hasQueso;
-        this.hasSalsa = hasSalsa;
+        this.cheese = salsa;
+        this.salsa = salsa;
     }
 
     public String getShell() {
@@ -25,14 +25,14 @@ public class Taco implements IPriceable{
         return size;
     }
 
-    public String getmeat() {return meat;}
+    public String getMeat() {return meat;}
 
-    public boolean isHasQueso() {
-        return hasQueso;
+    public String getCheese() {
+        return cheese;
     }
 
-    public boolean isHasSalsa() {
-        return hasSalsa;
+    public String getSalsa() {
+        return salsa;
     }
 
     public void addIngredients() {

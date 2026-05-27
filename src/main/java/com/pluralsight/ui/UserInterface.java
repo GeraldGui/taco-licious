@@ -1,6 +1,7 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.enums.*;
+import com.pluralsight.menu.Taco;
 import com.pluralsight.order.Order;
 
 import java.util.Scanner;
@@ -44,7 +45,7 @@ public class UserInterface {
             System.out.println("2. Add Drinks");
             System.out.println("3. Add Chips & Salsa");
             System.out.println("4. Checkout");
-            System.out.println("5. Exit");
+            System.out.println("0. Cancel Order");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -55,7 +56,7 @@ public class UserInterface {
                 case 2 -> addDrink();
                 case 3 -> addChipsAndSalsa();
                 case 4 -> checkout();
-                case 5 -> quit = true;
+                case 0 -> quit = true;
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
@@ -65,8 +66,8 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            TacoSize taco = chooseTacoSize();
             ShellType shell = chooseShell();
+            TacoSize tacoSize = chooseTacoSize();
             MeatType meat = chooseMeat();
 
             System.out.println("Would you like extra meat?");
@@ -90,7 +91,10 @@ public class UserInterface {
             int extraCheese = getChoice();
 
             ToppingType topping = chooseType();
-            SauceType sauce = chooseSauce();
+            SauceType salsa = chooseSauce();
+
+            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), cheese.name(), salsa.name());
+            currentOrder.addItem(taco);
 
             quit = true;
         }
