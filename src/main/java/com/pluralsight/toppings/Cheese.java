@@ -1,43 +1,19 @@
 package com.pluralsight.toppings;
 
-public class Cheese extends Premium {
-    private boolean hasExtraCheese;
+import com.pluralsight.enums.TacoSize;
 
+public class Cheese extends Premium {
 
     public Cheese(String toppingName) {
         super(toppingName);
     }
 
     @Override
-    public double getPrice(String size){
-        double price = 0;
-
-        if (size.equalsIgnoreCase("SINGLE")) {
-            price = 1.00;
-
-            if (!hasExtra) {
-                price += 0.30;
-            }
-
-            return price;
-        } else if(size.equalsIgnoreCase("THREE_TACO")) {
-            price = 2.00;
-
-            if (!hasExtra) {
-                price += 0.60;
-            }
-
-            return price;
-        }else if(size.equalsIgnoreCase("BURRITO")) {
-            price = 3.00;
-
-            if (!hasExtra) {
-                price += 0.90;
-            }
-
-            return price;
-        } else {
-            return price;
-        }
+    public double getPrice(TacoSize size) {
+        return switch (size) {
+            case SINGLE -> !hasExtra ? 1.05 : 0.70;
+            case THREE_TACO -> !hasExtra ? 2.10 : 1.50;
+            case BURRITO -> !hasExtra ? 3.15 : 2.25;
+        };
     }
 }

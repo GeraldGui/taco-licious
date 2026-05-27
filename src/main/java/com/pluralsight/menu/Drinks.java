@@ -1,5 +1,7 @@
 package com.pluralsight.menu;
 
+import com.pluralsight.enums.DrinkSize;
+
 public class Drinks implements IPriceable {
     String size;
     String flavor;
@@ -13,25 +15,16 @@ public class Drinks implements IPriceable {
         return "";
     }
 
-    @Override
-    public double getPrice(String size) {
-        double price = 0;
-
-        if (size.equalsIgnoreCase("small")) {
-            price = 2.00;
-
-            return price;
-        } else if(size.equalsIgnoreCase("medium")) {
-            price = 2.50;
-
-            return price;
-        }else if(size.equalsIgnoreCase("large")) {
-            price = 3.00;
-
-            return price;
-        } else {
-            return price;
-        }
+    public double getPrice(DrinkSize size) {
+        return switch (size) {
+            case SMALL -> 2.00;
+            case MEDIUM -> 2.50;
+            case LARGE -> 3.00;
+        };
     }
 
+    @Override
+    public double getPrice() {
+        return 0.0;
+    }
 }

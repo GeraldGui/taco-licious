@@ -21,16 +21,18 @@ public class Order {
         return orderID;
     }
 
-    public void addItem(IPriceable item) {
-
-    }
+    public void addItem(IPriceable item) { items.add(item);}
 
     public void removeItem() {
 
     }
 
     public double getTotalPrice() {
-        return 0;
+        double total;
+
+        for (IPriceable item: items) {
+            total += item.getPrice();
+        }
     }
 
     public boolean isValidOrder() {

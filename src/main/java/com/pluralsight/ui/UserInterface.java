@@ -1,6 +1,7 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.enums.*;
+import com.pluralsight.menu.Drinks;
 import com.pluralsight.menu.Taco;
 import com.pluralsight.order.Order;
 
@@ -53,7 +54,9 @@ public class UserInterface {
 
             switch (choice) {
                 case 1 -> addTaco();
-                case 2 -> addDrink();
+                case 2 -> {
+                    getDrinkSize();
+                }
                 case 3 -> addChipsAndSalsa();
                 case 4 -> checkout();
                 case 0 -> quit = true;
@@ -90,10 +93,11 @@ public class UserInterface {
             System.out.print("Enter your choice: ");
             int extraCheese = getChoice(1, 2);
 
-            ToppingType topping = chooseType();
+            ToppingType regularTopping = chooseType();
             SalsaType salsa = chooseSauce();
 
             Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), cheese.name(), salsa.name());
+            taco.addIngredients(regularTopping);
             currentOrder.addItem(taco);
 
             quit = true;
@@ -272,7 +276,27 @@ public class UserInterface {
 
     }
 
-    public DrinkType addDrink() {
+    public DrinkSize getDrinkSize(){
+        System.out.println("---------- Select Your Drink Size ----------");
+        System.out.println("1. Small");
+        System.out.println("2. Medium");
+        System.out.println("3. Large");
+
+        System.out.print("Enter your choice: ");
+        int drink = getChoice(1, 4);
+
+        return switch (drink) {
+            case 1 -> DrinkSize.SMALL;
+            case 2 -> DrinkSize.MEDIUM;
+            case 3 -> DrinkSize.LARGE;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
+    }
+
+    public DrinkType addDrinkType() {
         System.out.println("---------- Select Your Drink ----------");
         System.out.println("1. Coca-Coal");
         System.out.println("2. Pepsi");

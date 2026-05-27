@@ -12,4 +12,5 @@ public enum MeatType {
     public int getMeatType() {
         return meatType;
     }
+
 }

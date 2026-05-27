@@ -1,5 +1,7 @@
 package com.pluralsight.toppings;
 
+import com.pluralsight.enums.TacoSize;
+
 public class Sides extends Toppings{
     private String sideType;
 
@@ -8,7 +10,7 @@ public class Sides extends Toppings{
     }
 
     @Override
-    public double getPrice(String size) {
+    public double getPrice(TacoSize size) {
         return 0.0;
     }
 }
