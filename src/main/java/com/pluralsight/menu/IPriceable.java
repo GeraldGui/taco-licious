@@ -2,5 +2,5 @@ package com.pluralsight.menu;
 
 public interface IPriceable {
 
-    double getPrice();
+    double getPrice(String size);
 }

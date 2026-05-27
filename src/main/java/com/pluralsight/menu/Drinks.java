@@ -14,7 +14,24 @@ public class Drinks implements IPriceable {
     }
 
     @Override
-    public double getPrice() {
-        return 0;
+    public double getPrice(String size) {
+        double price = 0;
+
+        if (size.equalsIgnoreCase("small")) {
+            price = 2.00;
+
+            return price;
+        } else if(size.equalsIgnoreCase("medium")) {
+            price = 2.50;
+
+            return price;
+        }else if(size.equalsIgnoreCase("large")) {
+            price = 3.00;
+
+            return price;
+        } else {
+            return price;
+        }
     }
+
 }

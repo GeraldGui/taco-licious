@@ -2,11 +2,20 @@ package com.pluralsight.toppings;
 
 import com.pluralsight.menu.Taco;
 
-public class Toppings extends Taco {
+public  abstract class Toppings extends Taco {
     private String toppingName;
 
-    public Toppings(String shell, String size, boolean hasQueso, boolean hasSalsa) {
-        super(shell, size, hasQueso, hasSalsa);
+    public Toppings(String toppingName) {
+        super();
+        this.toppingName = toppingName;
     }
 
+    public String getToppingName() {
+        return toppingName;
+    }
+
+    @Override
+    public double getPrice(String size) {
+        return 0.0;
+    }
 }

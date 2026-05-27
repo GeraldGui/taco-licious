@@ -7,13 +7,15 @@ public class Taco implements IPriceable{
     private String cheese;
     private String salsa;
 
+    public Taco() {
 
+    }
 
     public Taco(String shell, String size, String meat, String cheese, String salsa) {
         this.shell = shell;
         this.size = size;
         this.meat = meat;
-        this.cheese = salsa;
+        this.cheese = cheese;
         this.salsa = salsa;
     }
 
@@ -44,7 +46,7 @@ public class Taco implements IPriceable{
     }
 
     @Override
-    public double getPrice() {
+    public double getPrice(String size) {
         return 0;
     }
 
