@@ -91,7 +91,7 @@ public class UserInterface {
             int extraCheese = getChoice(1, 2);
 
             ToppingType topping = chooseType();
-            SauceType salsa = chooseSauce();
+            SalsaType salsa = chooseSauce();
 
             Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), cheese.name(), salsa.name());
             currentOrder.addItem(taco);
@@ -224,7 +224,7 @@ public class UserInterface {
         };
     }
 
-    public SauceType chooseSauce() {
+    public SalsaType chooseSauce() {
         System.out.println("---------- Select Your Sauce (Free) ----------");
         System.out.println("1. Salsa Verde");
         System.out.println("2. Salsa Roja");
@@ -238,13 +238,13 @@ public class UserInterface {
         int sauce = getChoice(1, 7);
 
         return switch (sauce) {
-            case 1 -> SauceType.SALSA_VERDE;
-            case 2 -> SauceType.SALSA_ROJA;
-            case 3 -> SauceType.CHIPOTLE;
-            case 4 -> SauceType.HABANERO;
-            case 5 -> SauceType.MILD;
-            case 6 -> SauceType.EXTRA_HOT;
-            case 7 -> SauceType.NONE;
+            case 1 -> SalsaType.SALSA_VERDE;
+            case 2 -> SalsaType.SALSA_ROJA;
+            case 3 -> SalsaType.CHIPOTLE;
+            case 4 -> SalsaType.HABANERO;
+            case 5 -> SalsaType.MILD;
+            case 6 -> SalsaType.EXTRA_HOT;
+            case 7 -> SalsaType.NONE;
             default -> {
                 System.out.println("Invalid Choice!");
                 yield null;
@@ -272,11 +272,54 @@ public class UserInterface {
 
     }
 
-    public void addDrink() {
+    public DrinkType addDrink() {
+        System.out.println("---------- Select Your Drink ----------");
+        System.out.println("1. Coca-Coal");
+        System.out.println("2. Pepsi");
+        System.out.println("3. Sprite");
+        System.out.println("4. Crush");
 
+        System.out.print("Enter your choice: ");
+        int drink = getChoice(1, 4);
+
+        return switch (drink) {
+            case 1 -> DrinkType.COCA_COAL;
+            case 2 -> DrinkType.PEPSI;
+            case 3 -> DrinkType.SPRITE;
+            case 4 -> DrinkType.CRUSH;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
     }
 
-    public void addChipsAndSalsa() {
+    public SalsaType addChipsAndSalsa() {
+        System.out.println("---------- Select Your Drink ----------");
+        System.out.println("1. Salsa Verde");
+        System.out.println("2. Salsa Roja");
+        System.out.println("3. Chipotle");
+        System.out.println("4. Habanero");
+        System.out.println("5. Mild");
+        System.out.println("6. Extra Hot");
+        System.out.println("7. None");
+
+        System.out.print("Enter your choice: ");
+        int salsa = getChoice(1, 4);
+
+        return switch (salsa) {
+            case 1 -> SalsaType.SALSA_VERDE;
+            case 2 -> SalsaType.SALSA_ROJA;
+            case 3 -> SalsaType.CHIPOTLE;
+            case 4 -> SalsaType.HABANERO;
+            case 5 -> SalsaType.MILD;
+            case 6 -> SalsaType.EXTRA_HOT;
+            case 7 -> SalsaType.NONE;
+            default -> {
+                System.out.println("Invalid Choice!");
+                yield null;
+            }
+        };
 
     }
 
