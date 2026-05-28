@@ -1,6 +1,8 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.enums.*;
+import com.pluralsight.menu.ChipsAndSalsa;
+import com.pluralsight.menu.Drinks;
 import com.pluralsight.menu.Taco;
 import com.pluralsight.order.Order;
 
@@ -56,9 +58,16 @@ public class UserInterface {
             switch (choice) {
                 case 1 -> addTaco();
                 case 2 -> {
-                    getDrinkSize();
+                    DrinkSize drinkSize = getDrinkSize();
+                    DrinkType drinkType = addDrinkType();
+                    Drinks drinks = new Drinks(drinkSize.name(), drinkType.name());
+                    currentOrder.addItem(drinks);
                 }
-                case 3 -> addChipsAndSalsa();
+                case 3 -> {
+                    SalsaType salsaType = addChipsAndSalsa();
+                    ChipsAndSalsa chipsAndSalsa = new ChipsAndSalsa(salsaType.name());
+                    currentOrder.addItem(chipsAndSalsa);
+                }
                 case 4 -> checkout();
                 case 0 -> quit = true;
                 default -> System.out.println("Invalid choice. Please try again.");
