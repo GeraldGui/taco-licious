@@ -8,6 +8,7 @@ public class Cheese extends Premium {
         super(toppingName, hasExtra);
     }
 
+    @Override
     public double getPrice(String size) {
         return switch (TacoSize.valueOf(size)) {
             case SINGLE -> hasExtra ? 1.05 : 0.70;

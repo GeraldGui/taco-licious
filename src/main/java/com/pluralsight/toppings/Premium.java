@@ -11,8 +11,7 @@ public class Premium extends Toppings{
         this.hasExtra = hasExtra;
     }
 
-    @Override
-    public double getPrice() {
+    public double getPrice(String size) {
         return 0.0;
     }
 }

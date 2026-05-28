@@ -9,8 +9,4 @@ public class Sauces extends Toppings{
         super(toppingName);
     }
 
-    @Override
-    public double getPrice() {
-        return 0.0;
-    }
 }
