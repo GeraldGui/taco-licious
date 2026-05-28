@@ -23,4 +23,9 @@ public class Drinks implements IPriceable {
             case LARGE -> 3.00;
         };
     }
+
+    @Override
+    public String toString() {
+        return size + " " + flavor;
+    }
 }

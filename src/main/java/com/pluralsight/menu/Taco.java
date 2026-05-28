@@ -81,8 +81,11 @@ public class Taco implements IPriceable{
         double total = base + meatPrice + cheesePrice;
 
         return total;
+    }
 
-
+    @Override
+    public String toString() {
+        return size + " Taco - " + shell + " shell, " + meat;
     }
 
 }

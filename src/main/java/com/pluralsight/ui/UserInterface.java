@@ -5,6 +5,7 @@ import com.pluralsight.menu.ChipsAndSalsa;
 import com.pluralsight.menu.Drinks;
 import com.pluralsight.menu.Taco;
 import com.pluralsight.order.Order;
+import com.pluralsight.order.ReceiptFileManager;
 
 import java.util.Scanner;
 
@@ -329,7 +330,7 @@ public class UserInterface {
     }
 
     public SalsaType addChipsAndSalsa() {
-        System.out.println("---------- Select Your Drink ----------");
+        System.out.println("---------- Select Your Salsa ----------");
         System.out.println("1. Salsa Verde");
         System.out.println("2. Salsa Roja");
         System.out.println("3. Chipotle");
@@ -378,7 +379,9 @@ public class UserInterface {
     }
 
     public void checkout() {
-        System.out.println("Your total is: " + currentOrder.getTotalPrice());
+        System.out.println(currentOrder.getReceiptText());
+        ReceiptFileManager receiptFileManager = new ReceiptFileManager();
+        receiptFileManager.saveReceipt(currentOrder);
 
     }
 }
