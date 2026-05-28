@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum TacoSize {
-    SINGLE(1), THREE_TACO(2), BURRITO(3);
+    SINGLE("Single"), THREE_TACO("Three Taco"), BURRITO("Burrito");
 
-    private final int tacoSize;
+    private final String tacoSize;
 
-    TacoSize(int tacoSize) {
+    TacoSize(String tacoSize) {
         this.tacoSize = tacoSize;
     }
 
-    public int getTacoSize() {
+    public String getTacoSize() {
         return tacoSize;
     }
 }

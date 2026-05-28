@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum SalsaType {
-    SALSA_VERDE(1), SALSA_ROJA(2), CHIPOTLE(3), HABANERO(4), MILD(5), EXTRA_HOT(6), NONE(7);
+    SALSA_VERDE("Salsa Verde"), SALSA_ROJA("Salsa Roja"), CHIPOTLE("Chipotle"), HABANERO("Habanero"), MILD("Mild"), EXTRA_HOT("Extra Hot"), NONE("None");
 
-    private final int sauceType;
+    private final String sauceType;
 
-    SalsaType(int sauceType) {
+    SalsaType(String sauceType) {
         this.sauceType = sauceType;
     }
 
-    public int getSauceType() {
+    public String getSauceType() {
         return sauceType;
     }
 }

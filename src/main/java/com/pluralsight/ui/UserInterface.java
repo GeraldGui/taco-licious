@@ -318,7 +318,7 @@ public class UserInterface {
         int drink = getChoice(1, 4);
 
         return switch (drink) {
-            case 1 -> DrinkType.COCA_COAL;
+            case 1 -> DrinkType.COCA_COLA;
             case 2 -> DrinkType.PEPSI;
             case 3 -> DrinkType.SPRITE;
             case 4 -> DrinkType.CRUSH;

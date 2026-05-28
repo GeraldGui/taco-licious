@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum ShellType {
-    CORN(1), FLOUR(2), HARD_SHELL(3), BOWL(4);
+    CORN("Corn"), FLOUR("Flour"), HARD_SHELL("Hard Shell"), BOWL("Bowl");
 
-    private final int shellType;
+    private final String shellType;
 
-    ShellType(int shellType) {
+    ShellType(String shellType) {
         this.shellType = shellType;
     }
 
-    public int getShellType() {
+    public String getShellType() {
         return shellType;
     }
 }

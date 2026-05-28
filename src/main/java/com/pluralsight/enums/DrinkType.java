@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum DrinkType {
-    COCA_COAL(1), PEPSI(2), SPRITE(3), CRUSH(4);
+    COCA_COLA("Coca Cola"), PEPSI("Pepsi"), SPRITE("Sprite"), CRUSH("Crush");
 
-    private final int sodaType;
+    private final String sodaType;
 
-    DrinkType(int sodaType) {
+    DrinkType(String sodaType) {
         this.sodaType = sodaType;
     }
 
-    public int getSodaType() {
+    public String getSodaType() {
         return sodaType;
     }
 }

@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum DrinkSize {
-    SMALL(1), MEDIUM(2), LARGE(3);
+    SMALL("Small"), MEDIUM("Medium"), LARGE("Large");
 
-    private final int drinkSize;
+    private final String drinkSize;
 
-    DrinkSize(int drinkSize) {
+    DrinkSize(String drinkSize) {
         this.drinkSize = drinkSize;
     }
 
-    public int getDrinkSize() {
+    public String getDrinkSize() {
         return drinkSize;
     }
 }

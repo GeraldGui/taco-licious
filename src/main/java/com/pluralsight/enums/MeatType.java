@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum MeatType {
-    CARNE_ASADA(1), AL_PASTOR(2), CARNITAS(3), POLLO(4), CHORIZO(5), PESCADO(6);
+    CARNE_ASADA("Carne Asada"), AL_PASTOR("Al Pastor"), CARNITAS("Carnitas"), POLLO("Pollo"), CHORIZO("Chorizo"), PESCADO("Pescado");
 
-    private final int meatType;
+    private final String meatType;
 
-    MeatType(int meatType) {
+    MeatType(String meatType) {
         this.meatType = meatType;
     }
 
-    public int getMeatType() {
+    public String getMeatType() {
         return meatType;
     }
 

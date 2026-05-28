@@ -62,10 +62,6 @@ public class Taco implements IPriceable{
 
     }
 
-    public String getDescription(){
-        return "";
-    }
-
     @Override
     public double getPrice() {
         double base = switch (TacoSize.valueOf(size)) {

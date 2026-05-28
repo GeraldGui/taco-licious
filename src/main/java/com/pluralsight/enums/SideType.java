@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum SideType {
-    LIME_WEDGES(1), CREAMA(2);
+    LIME_WEDGES("Lime Wedges"), CREAMA("Creama");
 
-    private final int sides;
+    private final String sides;
 
-    SideType(int sides) {
+    SideType(String sides) {
         this.sides = sides;
     }
 
-    public int getSides() {
+    public String getSides() {
         return sides;
     }
 }

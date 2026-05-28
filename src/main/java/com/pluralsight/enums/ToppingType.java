@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum ToppingType {
-    LETTUCE(1), CILANTRO(2), ONIONS(3), TOMATOES(4), JALAPENOS(5), RADISHES(6), PICO_DE_GALLO(7), GUACAMOLE(8), CORN(9);
+    LETTUCE("Lettuce"), CILANTRO("Cilantro"), ONIONS("Onions"), TOMATOES("Tomatoes"), JALAPENOS("Jalapenos"), RADISHES("Radishes"), PICO_DE_GALLO("Pico De Gallo"), GUACAMOLE("Guacamole"), CORN("Corn");
 
-    private final int topping;
+    private final String topping;
 
-    ToppingType(int topping) {
+    ToppingType(String topping) {
         this.topping = topping;
     }
 
-    public int getTopping() {
+    public String getTopping() {
         return topping;
     }
 }

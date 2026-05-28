@@ -1,15 +1,15 @@
 package com.pluralsight.enums;
 
 public enum CheeseType {
-    QUESO_FRESCO(1), OAXACA(2), COTIJA(3), CHEDDAR(4);
+    QUESO_FRESCO("Queso Fresco"), OAXACA("Oaxaca"), COTIJA("Cotija"), CHEDDAR("Cheddar");
 
-    private final int cheeseType;
+    private final String cheeseType;
 
-    CheeseType(int cheeseType) {
+    CheeseType(String  cheeseType) {
         this.cheeseType = cheeseType;
     }
 
-    public int getCheeseType() {
+    public String getCheeseType() {
         return cheeseType;
     }
 }
