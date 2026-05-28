@@ -115,7 +115,7 @@ public class UserInterface {
             int extraCheese = getChoice(1, 2);
             boolean hasExtraCheese = extraCheese == 1;
 
-            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, null, null);
+            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, null, false, null);
 
             while (true) {
                 ToppingType toppingType = chooseTopping();
@@ -123,6 +123,9 @@ public class UserInterface {
                 taco.addIngredients(toppingType);
             }
             SalsaType salsaType = chooseSauce();
+
+            isCoveredInSalsaAndQueso();
+
             SideType sideType = chooseSide();
 
             taco.setSalsa(salsaType.name());
@@ -373,6 +376,19 @@ public class UserInterface {
 
     }
 
+    public void isCoveredInSalsaAndQueso() {
+        System.out.println("Would you like the taco/burrito covered in salsa and queso?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+        int covered = getChoice(1, 2);
+
+        Taco taco = new Taco();
+
+        if (covered == 1) {
+            taco.setCoveredInSalsaAndQueso(true);
+        }
+    }
+
     public int getChoice(int min, int max) {
         while (true) {
             if (scanner.hasNextInt()) {
@@ -393,7 +409,7 @@ public class UserInterface {
     }
 
     public void streetTaco() {
-        Taco taco = new Taco(TacoSize.THREE_TACO.name(), ShellType.CORN.name(), MeatType.CARNE_ASADA.name(), false, CheeseType.QUESO_FRESCO.name(), false, SalsaType.SALSA_VERDE.name(), SideType.LIME_WEDGES.name());
+        Taco taco = new Taco(TacoSize.THREE_TACO.name(), ShellType.CORN.name(), MeatType.CARNE_ASADA.name(), false, CheeseType.QUESO_FRESCO.name(), false, SalsaType.SALSA_VERDE.name(), false, SideType.LIME_WEDGES.name());
         taco.addIngredients(ToppingType.valueOf(ToppingType.ONIONS.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.CILANTRO.name()));
         currentOrder.addItem(taco);
@@ -401,7 +417,7 @@ public class UserInterface {
     }
 
     public void superBurrito() {
-        Taco taco = new Taco(TacoSize.BURRITO.name(), ShellType.FLOUR.name(), MeatType.CARNITAS.name(), false, CheeseType.CHEDDAR.name(), false, SalsaType.NONE.name(), SideType.LIME_WEDGES.name());
+        Taco taco = new Taco(TacoSize.BURRITO.name(), ShellType.FLOUR.name(), MeatType.CARNITAS.name(), false, CheeseType.CHEDDAR.name(), false, SalsaType.NONE.name(), true,  SideType.LIME_WEDGES.name());
         taco.addIngredients(ToppingType.valueOf(ToppingType.PICO_DE_GALLO.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.LETTUCE.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.TOMATOES.name()));

@@ -17,13 +17,14 @@ public class Taco implements IPriceable{
     private String side;
     private boolean hasExtraMeat;
     private boolean hasExtraCheese;
+    private boolean coveredInSalsaAndQueso;
     List<ToppingType> toppings;
 
     public Taco() {
         toppings = new ArrayList<>();
     }
 
-    public Taco(String size, String shell, String meat, boolean hasExtraMeat,  String cheese, boolean hasExtraCheese, String salsa, String side) {
+    public Taco(String size, String shell, String meat, boolean hasExtraMeat, String cheese, boolean hasExtraCheese, String salsa, boolean coveredInSalsaAndQueso, String side) {
         this.size = size;
         this.shell = shell;
         this.meat = meat;
@@ -31,6 +32,7 @@ public class Taco implements IPriceable{
         this.cheese = cheese;
         this.hasExtraCheese = hasExtraCheese;
         this.salsa = salsa;
+        this.coveredInSalsaAndQueso = coveredInSalsaAndQueso;
         this.side = side;
         toppings = new ArrayList<>();
     }
@@ -57,6 +59,10 @@ public class Taco implements IPriceable{
         return side;
     }
 
+    public boolean isCoveredInSalsaAndQueso() {
+        return coveredInSalsaAndQueso;
+    }
+
     public void setSalsa(String salsa) {
         this.salsa = salsa;
     }
@@ -67,7 +73,10 @@ public class Taco implements IPriceable{
 
     public void addIngredients(ToppingType regularTopping) {
         toppings.add(regularTopping);
+    }
 
+    public void setCoveredInSalsaAndQueso(boolean coveredInSalsaAndQueso) {
+        this.coveredInSalsaAndQueso = coveredInSalsaAndQueso;
     }
 
     @Override
@@ -89,13 +98,14 @@ public class Taco implements IPriceable{
 
     @Override
     public String toString() {
-        return "Taco: " + TacoSize.valueOf(size).getTacoSize() +
+        return ("Taco: " + TacoSize.valueOf(size).getTacoSize() +
                 "\nShell: " + ShellType.valueOf(shell).getShellType() +
                 "\nMeat: " + MeatType.valueOf(meat).getMeatType() +
                 "\nCheese: " + CheeseType.valueOf(cheese).getCheeseType() +
                 "\nRegular Toppings: " + toppings.stream().map(ToppingType::getTopping).collect(Collectors.joining(", ")) +
                 "\nSauces: " + SalsaType.valueOf(salsa).getSauceType() +
-                "\nSides: " + SideType.valueOf(side).getSides();
+                "\nCovered in salsa and queso: " + (isCoveredInSalsaAndQueso() ? "Yes" : "NO") +
+                "\nSides: " + SideType.valueOf(side).getSides());
     }
 
 }
