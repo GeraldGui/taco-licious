@@ -45,11 +45,15 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("---------- Main Menu ----------");
+            System.out.println("---------- Order Menu ----------");
             System.out.println("1. Add Taco");
             System.out.println("2. Add Drinks");
             System.out.println("3. Add Chips & Salsa");
-            System.out.println("4. Checkout");
+            System.out.println("\n---------- Signature Menu ----------");
+            System.out.println("4. Street Tacos");
+            System.out.println("5. Super Burrito");
+            System.out.println("\n---------- Checkout / Cancel----------");
+            System.out.println("6. Checkout");
             System.out.println("0. Cancel Order");
 
             System.out.print("Enter your choice: ");
@@ -69,7 +73,9 @@ public class UserInterface {
                     ChipsAndSalsa chipsAndSalsa = new ChipsAndSalsa(salsaType.name());
                     currentOrder.addItem(chipsAndSalsa);
                 }
-                case 4 -> {
+                case 4 -> streetTaco();
+                case 5 -> superBurrito();
+                case 6 -> {
                     checkout();
                     quit = true;
                 }
@@ -111,9 +117,8 @@ public class UserInterface {
 
             Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, null, null);
 
-            ToppingType toppingType;
             while (true) {
-                toppingType = chooseTopping();
+                ToppingType toppingType = chooseTopping();
                 if (toppingType == null) break;
                 taco.addIngredients(toppingType);
             }
@@ -297,7 +302,6 @@ public class UserInterface {
         };
     }
 
-
     public DrinkSize getDrinkSize(){
         System.out.println("---------- Select Your Drink Size ----------");
         System.out.println("1. Small");
@@ -386,7 +390,23 @@ public class UserInterface {
                 scanner.nextLine();
             }
         }
+    }
 
+    public void streetTaco() {
+        Taco taco = new Taco(TacoSize.THREE_TACO.name(), ShellType.CORN.name(), MeatType.CARNE_ASADA.name(), false, CheeseType.QUESO_FRESCO.name(), false, SalsaType.SALSA_VERDE.name(), SideType.LIME_WEDGES.name());
+        taco.addIngredients(ToppingType.valueOf(ToppingType.ONIONS.name()));
+        taco.addIngredients(ToppingType.valueOf(ToppingType.CILANTRO.name()));
+        currentOrder.addItem(taco);
+        System.out.println("Added Street Taco to order!\n");
+    }
+
+    public void superBurrito() {
+        Taco taco = new Taco(TacoSize.BURRITO.name(), ShellType.FLOUR.name(), MeatType.CARNITAS.name(), false, CheeseType.CHEDDAR.name(), false, SalsaType.NONE.name(), SideType.LIME_WEDGES.name());
+        taco.addIngredients(ToppingType.valueOf(ToppingType.PICO_DE_GALLO.name()));
+        taco.addIngredients(ToppingType.valueOf(ToppingType.LETTUCE.name()));
+        taco.addIngredients(ToppingType.valueOf(ToppingType.TOMATOES.name()));
+        currentOrder.addItem(taco);
+        System.out.println("Added Street Taco to order!\n");
     }
 
     public void checkout() {
