@@ -1,12 +1,12 @@
 package com.pluralsight.menu;
 
-import com.pluralsight.enums.TacoSize;
-import com.pluralsight.enums.ToppingType;
+import com.pluralsight.enums.*;
 import com.pluralsight.toppings.Cheese;
 import com.pluralsight.toppings.Meat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Taco implements IPriceable{
     private String shell;
@@ -57,6 +57,14 @@ public class Taco implements IPriceable{
         return side;
     }
 
+    public void setSalsa(String salsa) {
+        this.salsa = salsa;
+    }
+
+    public void setSide(String side) {
+        this.side = side;
+    }
+
     public void addIngredients(ToppingType regularTopping) {
         toppings.add(regularTopping);
 
@@ -81,7 +89,13 @@ public class Taco implements IPriceable{
 
     @Override
     public String toString() {
-        return size + " Taco - " + shell + " shell, " + meat;
+        return "Taco: " + TacoSize.valueOf(size).getTacoSize() +
+                "\nShell: " + ShellType.valueOf(shell).getShellType() +
+                "\nMeat: " + MeatType.valueOf(meat).getMeatType() +
+                "\nCheese: " + CheeseType.valueOf(cheese).getCheeseType() +
+                "\nRegular Toppings: " + toppings.stream().map(ToppingType::getTopping).collect(Collectors.joining(", ")) +
+                "\nSauces: " + SalsaType.valueOf(salsa).getSauceType() +
+                "\nSides: " + SideType.valueOf(side).getSides();
     }
 
 }

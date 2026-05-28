@@ -1,10 +1,14 @@
 package com.pluralsight.order;
 
+import com.pluralsight.menu.ChipsAndSalsa;
+import com.pluralsight.menu.Drinks;
 import com.pluralsight.menu.IPriceable;
+import com.pluralsight.menu.Taco;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -47,21 +51,30 @@ public class Order {
         return total;
     }
 
+    public boolean isValidOrder() {
+        boolean hasTaco = items.stream().anyMatch(item -> item instanceof Taco);
+        boolean hasDrinkOrChips = items.stream().anyMatch(item -> item instanceof Drinks || item instanceof ChipsAndSalsa);
+
+        return hasTaco || hasDrinkOrChips;
+    }
+
     public String getReceiptText() {
         StringBuilder sb = new StringBuilder();
         sb.append("===================================\n");
-        sb.append("        TACO SHOP RECEIPT\n");
+        sb.append("        Taco-Licious RECEIPT\n");
         sb.append("===================================\n");
         sb.append("Order ID: ").append(getOrderID()).append("\n");
         sb.append("Date: ").append(getOrderDate().format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss"))).append("\n");
         sb.append("-----------------------------------\n");
 
         for (IPriceable item : getItems()) {
-            sb.append(item).append("  $").append(item.getPrice()).append("\n");
+            sb.append(item).
+                    append("\n                              $").
+                    append(String.format("%.2f", item.getPrice())).
+                    append("\n-----------------------------------\n");
         }
 
-        sb.append("-----------------------------------\n");
-        sb.append("Total: $").append(getTotalPrice()).append("\n");
+        sb.append("Total: $").append(String.format("%.2f", getTotalPrice())).append("\n");
         sb.append("===================================\n");
         sb.append("Thank you! Come again!\n");
         return sb.toString();

@@ -1,6 +1,7 @@
 package com.pluralsight.menu;
 
 import com.pluralsight.enums.DrinkSize;
+import com.pluralsight.enums.DrinkType;
 
 public class Drinks implements IPriceable {
     String size;
@@ -9,10 +10,6 @@ public class Drinks implements IPriceable {
     public Drinks(String size, String flavor) {
         this.size = size;
         this.flavor = flavor;
-    }
-
-    public String getDescription() {
-        return "";
     }
 
     @Override
@@ -26,6 +23,6 @@ public class Drinks implements IPriceable {
 
     @Override
     public String toString() {
-        return size + " " + flavor;
+        return "Drink: " +  DrinkSize.valueOf(size).getDrinkSize() + " " + DrinkType.valueOf(flavor).getSodaType();
     }
 }

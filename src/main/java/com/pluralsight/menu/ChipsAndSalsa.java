@@ -1,5 +1,7 @@
 package com.pluralsight.menu;
 
+import com.pluralsight.enums.SalsaType;
+
 public class ChipsAndSalsa implements IPriceable{
     private String salsaType;
 
@@ -11,10 +13,6 @@ public class ChipsAndSalsa implements IPriceable{
         return salsaType;
     }
 
-    public String getDescription() {
-        return "";
-    }
-
     @Override
     public double getPrice() {
         return 1.50;
@@ -22,7 +20,7 @@ public class ChipsAndSalsa implements IPriceable{
 
     @Override
     public String toString() {
-        return "Chips & Salsa (" + salsaType + ")";
+        return "Chips & Salsa: " + SalsaType.valueOf(salsaType).getSauceType();
     }
 
 }

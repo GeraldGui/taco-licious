@@ -22,7 +22,7 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("---------- Welcome To Taco Shop ----------");
+            System.out.println("---------- Welcome To Taco-Licious ----------");
             System.out.println("1. New Order");
             System.out.println("2. Exit");
 
@@ -69,7 +69,10 @@ public class UserInterface {
                     ChipsAndSalsa chipsAndSalsa = new ChipsAndSalsa(salsaType.name());
                     currentOrder.addItem(chipsAndSalsa);
                 }
-                case 4 -> checkout();
+                case 4 -> {
+                    checkout();
+                    quit = true;
+                }
                 case 0 -> quit = true;
                 default -> System.out.println("Invalid choice. Please try again.");
             }
@@ -106,12 +109,20 @@ public class UserInterface {
             int extraCheese = getChoice(1, 2);
             boolean hasExtraCheese = extraCheese == 1;
 
-            ToppingType regularTopping = chooseType();
+            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, null, null);
+
+            ToppingType toppingType;
+            while (true) {
+                toppingType = chooseTopping();
+                if (toppingType == null) break;
+                taco.addIngredients(toppingType);
+            }
             SalsaType salsaType = chooseSauce();
             SideType sideType = chooseSide();
 
-            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, salsaType.name(), sideType.name());
-            taco.addIngredients(regularTopping);
+            taco.setSalsa(salsaType.name());
+            taco.setSide(sideType.name());
+
             currentOrder.addItem(taco);
 
             quit = true;
@@ -207,7 +218,7 @@ public class UserInterface {
         };
     }
 
-    public ToppingType chooseType() {
+    public ToppingType chooseTopping() {
         System.out.println("---------- Select Your Toppings ----------");
         System.out.println("1. Lettuce");
         System.out.println("2. Cilantro");
@@ -379,9 +390,28 @@ public class UserInterface {
     }
 
     public void checkout() {
+        if (!currentOrder.isValidOrder()) {
+            System.out.println("Order must have a taco, or a drink/chips& salsa!");
+            return;
+        }
+
         System.out.println(currentOrder.getReceiptText());
-        ReceiptFileManager receiptFileManager = new ReceiptFileManager();
-        receiptFileManager.saveReceipt(currentOrder);
+        System.out.println("1. Confirm Order");
+        System.out.println("0. Cancel order");
+
+        int choice = getChoice(0, 1);
+
+        if (choice == 1) {
+            ReceiptFileManager receiptFileManager = new ReceiptFileManager();
+            receiptFileManager.saveReceipt(currentOrder);
+        } else {
+            currentOrder = null;
+            System.out.println("Order Canceled!");
+        }
+
+
+
+
 
     }
 }
