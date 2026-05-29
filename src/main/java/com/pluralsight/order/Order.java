@@ -8,6 +8,7 @@ import com.pluralsight.menu.Taco;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +64,10 @@ public class Order {
         sb.append("Date: ").append(getOrderDate().format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss"))).append("\n");
         sb.append("-----------------------------------\n");
 
-        for (IPriceable item : getItems()) {
+        List<IPriceable> reversed = new ArrayList<>(items);
+        Collections.reverse(reversed);
+
+        for (IPriceable item : reversed) {
             sb.append(item).
                     append("\n                              $").
                     append(String.format("%.2f", item.getPrice())).

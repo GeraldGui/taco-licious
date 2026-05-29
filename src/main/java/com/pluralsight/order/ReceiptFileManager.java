@@ -17,7 +17,8 @@ public class ReceiptFileManager {
         String fileName = time + ".txt";
 
         try {
-            Path path = Path.of(fileName);
+            Path path = Path.of("receipts/" + fileName);
+            Files.createDirectories(Path.of("receipts"));
             Files.writeString(path,order.getReceiptText());
             System.out.println("Receipt saved: " + fileName);
         } catch (IOException e) {
