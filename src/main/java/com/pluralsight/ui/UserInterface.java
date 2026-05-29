@@ -24,7 +24,7 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("---------- Welcome To Taco-Licious ----------");
+            System.out.println("\n---------- Welcome To Taco-Licious ----------");
             System.out.println("1. New Order");
             System.out.println("2. Exit");
 
@@ -47,7 +47,7 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("---------- Order Menu ----------");
+            System.out.println("\n---------- Order Menu ----------");
             System.out.println("1. Add Taco");
             System.out.println("2. Add Drinks");
             System.out.println("3. Add Chips & Salsa");
@@ -69,11 +69,13 @@ public class UserInterface {
                     DrinkType drinkType = addDrinkType();
                     Drinks drinks = new Drinks(drinkSize.name(), drinkType.name());
                     currentOrder.addItem(drinks);
+                    System.out.println("Your Drink was Added!");
                 }
                 case 3 -> {
                     SalsaType salsaType = addChipsAndSalsa();
                     ChipsAndSalsa chipsAndSalsa = new ChipsAndSalsa(salsaType.name());
                     currentOrder.addItem(chipsAndSalsa);
+                    System.out.println("Your Chips and Salsa Was Added!");
                 }
                 case 4 -> streetTaco();
                 case 5 -> superBurrito();
@@ -95,7 +97,7 @@ public class UserInterface {
             ShellType shell = chooseShell();
             MeatType meat = chooseMeat();
 
-            System.out.println("Would you like extra meat?");
+            System.out.println("\nWould you like extra meat?");
             System.out.println("Single +0.50 | 3-Taco +1.00 | Burrito +1.50");
 
             System.out.println("\n1. Yes");
@@ -107,7 +109,7 @@ public class UserInterface {
 
             CheeseType cheese = chooseCheese();
 
-            System.out.println("Would you like extra cheese?");
+            System.out.println("\nWould you like extra cheese?");
             System.out.println("Single +0.30 | 3-Taco +0.60 | Burrito +0.90");
 
             System.out.println("\n1. Yes");
@@ -380,7 +382,7 @@ public class UserInterface {
     }
 
     public void isCoveredInSalsaAndQueso(Taco taco) {
-        System.out.println("Would you like the taco/burrito covered in salsa and queso?");
+        System.out.println("\nWould you like the taco/burrito covered in salsa and queso?");
         System.out.println("1. Yes");
         System.out.println("2. No");
         System.out.print("Enter your choice: ");
@@ -415,22 +417,10 @@ public class UserInterface {
         taco.addIngredients(ToppingType.valueOf(ToppingType.ONIONS.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.CILANTRO.name()));
 
+        System.out.println("\n---------- Street Taco ----------");
         System.out.println("\n" +taco);
         removeItemFromTaco(taco);
-
-        while (true) {
-            System.out.println("Would you like to add a topping?");
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-
-            if (getChoice(1, 2) == 2) break;
-
-            ToppingType topping = chooseTopping();
-            if (topping != null) {
-                taco.addIngredients(topping);
-                System.out.println(taco); // show updated taco
-            }
-        }
+        addATopping(taco);
 
         currentOrder.addItem(taco);
         System.out.println("Added Street Taco to order!\n");
@@ -442,11 +432,18 @@ public class UserInterface {
         taco.addIngredients(ToppingType.valueOf(ToppingType.LETTUCE.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.TOMATOES.name()));
 
+        System.out.println("\n---------- Super Burrito ----------");
         System.out.println("\n" + taco);
         removeItemFromTaco(taco);
+        addATopping(taco);
 
+        currentOrder.addItem(taco);
+        System.out.println("Added Street Taco to order!\n");
+    }
+
+    public void addATopping(Taco taco) {
         while (true) {
-            System.out.println("Would you like to add a topping?");
+            System.out.println("\nWould you like to add a topping?");
             System.out.println("1. Yes");
             System.out.println("2. No");
 
@@ -458,9 +455,6 @@ public class UserInterface {
                 System.out.println(taco); // show updated taco
             }
         }
-
-        currentOrder.addItem(taco);
-        System.out.println("Added Street Taco to order!\n");
     }
 
     public void removeItemFromTaco(Taco taco) {
@@ -511,6 +505,7 @@ public class UserInterface {
         System.out.println(currentOrder.getReceiptText());
         System.out.println("1. Confirm Order");
         System.out.println("0. Cancel order");
+        System.out.print("Your Choice: ");
 
         int choice = getChoice(0, 1);
 
