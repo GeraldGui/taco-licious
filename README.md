@@ -19,6 +19,8 @@ receipts displaying the customer’s final order and total cost.
 - As a customer I would like to have drink options so that I can add them to my order.
 - As a customer I would like to be able to add Tacos/Burriots so that I can add them to my order.
 - As a customer I would like to have a receipt so that I can know what I paid for.
+- As a customer I would like to dip my taco/burrito into queso and salsa so that I can enjoy it more.
+
 
 ## Diagram
 
