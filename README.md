@@ -49,6 +49,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
+![Demo.gif](Demo.gif)
 
 ## Future Work
 
