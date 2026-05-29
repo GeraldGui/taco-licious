@@ -16,6 +16,11 @@ public class UserInterface {
     private Scanner scanner;
     private Order currentOrder;
 
+    private static final String RESET = "\u001B[0m";
+    private static final String YELLOW = "\u001B[33m";
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+
     public UserInterface() {
         scanner = new Scanner(System.in);
     }
@@ -24,7 +29,7 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("\n---------- Welcome To Taco-Licious ----------");
+            System.out.println(YELLOW + "\n---------- Welcome To Taco-Licious ----------" + RESET);
             System.out.println("1. New Order");
             System.out.println("2. Exit");
 
@@ -47,14 +52,14 @@ public class UserInterface {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("\n---------- Order Menu ----------");
+            System.out.println(YELLOW + "\n---------- Order Menu ----------" + RESET);
             System.out.println("1. Add Taco");
             System.out.println("2. Add Drinks");
             System.out.println("3. Add Chips & Salsa");
-            System.out.println("\n---------- Signature Menu ----------");
+            System.out.println(RED + "\n---------- Signature Menu ----------" + RESET);
             System.out.println("4. Street Tacos");
             System.out.println("5. Super Burrito");
-            System.out.println("\n---------- Checkout / Cancel----------");
+            System.out.println(GREEN + "\n---------- Checkout / Cancel----------" + RESET);
             System.out.println("6. Checkout");
             System.out.println("0. Cancel Order");
 
@@ -142,7 +147,7 @@ public class UserInterface {
     }
 
     public TacoSize chooseTacoSize() {
-        System.out.println("\n---------- Build Your Taco ----------");
+        System.out.println(YELLOW + "\n---------- Build Your Taco ----------" + RESET);
         System.out.println("1. Single");
         System.out.println("2. 3-Taco");
         System.out.println("3. Burrito");
@@ -162,7 +167,7 @@ public class UserInterface {
     }
 
     public ShellType chooseShell() {
-        System.out.println("\n---------- Select Your Shell ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Shell ----------" + RESET);
         System.out.println("1. Corn");
         System.out.println("2. Flour");
         System.out.println("3. Hard Shell");
@@ -184,7 +189,7 @@ public class UserInterface {
     }
 
     public MeatType chooseMeat() {
-        System.out.println("\n---------- Select Your Meat ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Meat ----------" + RESET);
         System.out.println("1. Carne Asada");
         System.out.println("2. Al Pastor");
         System.out.println("3. Carnitas");
@@ -210,7 +215,7 @@ public class UserInterface {
     }
 
     public CheeseType chooseCheese() {
-        System.out.println("\n---------- Select Your Cheese ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Cheese ----------" + RESET);
         System.out.println("1. Queso Fresco");
         System.out.println("2. Oaxaca");
         System.out.println("3. Cotija");
@@ -232,7 +237,7 @@ public class UserInterface {
     }
 
     public ToppingType chooseTopping() {
-        System.out.println("\n---------- Select Your Toppings ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Toppings ----------" + RESET);
         System.out.println("1. Lettuce");
         System.out.println("2. Cilantro");
         System.out.println("3. Onions");
@@ -265,7 +270,7 @@ public class UserInterface {
     }
 
     public SalsaType chooseSauce() {
-        System.out.println("\n---------- Select Your Sauce (Free) ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Sauce (Free) ----------" + RESET);
         System.out.println("1. Salsa Verde");
         System.out.println("2. Salsa Roja");
         System.out.println("3. Chipotle");
@@ -293,7 +298,7 @@ public class UserInterface {
     }
 
     public SideType chooseSide() {
-        System.out.println("\n---------- Select Your Side ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Side ----------" + RESET);
         System.out.println("1. Lime Wedges");
         System.out.println("2. Crema");
 
@@ -311,7 +316,7 @@ public class UserInterface {
     }
 
     public DrinkSize getDrinkSize() {
-        System.out.println("\n---------- Select Your Drink Size ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Drink Size ----------" + RESET);
         System.out.println("1. Small");
         System.out.println("2. Medium");
         System.out.println("3. Large");
@@ -331,7 +336,7 @@ public class UserInterface {
     }
 
     public DrinkType addDrinkType() {
-        System.out.println("\n---------- Select Your Drink ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Drink ----------" + RESET);
         System.out.println("1. Coca-Coal");
         System.out.println("2. Pepsi");
         System.out.println("3. Sprite");
@@ -353,7 +358,7 @@ public class UserInterface {
     }
 
     public SalsaType addChipsAndSalsa() {
-        System.out.println("\n---------- Select Your Salsa ----------");
+        System.out.println(YELLOW + "\n---------- Select Your Salsa ----------" + RESET);
         System.out.println("1. Salsa Verde");
         System.out.println("2. Salsa Roja");
         System.out.println("3. Chipotle");
@@ -417,7 +422,7 @@ public class UserInterface {
         taco.addIngredients(ToppingType.valueOf(ToppingType.ONIONS.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.CILANTRO.name()));
 
-        System.out.println("\n---------- Street Taco ----------");
+        System.out.println(RED + "\n---------- Street Taco ----------" + RESET);
         System.out.println("\n" +taco);
         removeItemFromTaco(taco);
         addATopping(taco);
@@ -432,7 +437,7 @@ public class UserInterface {
         taco.addIngredients(ToppingType.valueOf(ToppingType.LETTUCE.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.TOMATOES.name()));
 
-        System.out.println("\n---------- Super Burrito ----------");
+        System.out.println(RED + "\n---------- Super Burrito ----------" + RESET);
         System.out.println("\n" + taco);
         removeItemFromTaco(taco);
         addATopping(taco);

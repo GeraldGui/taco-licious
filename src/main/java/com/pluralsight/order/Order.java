@@ -18,6 +18,7 @@ public class Order {
     private LocalDateTime orderDate;
     private List<IPriceable> items;
 
+
     public Order() {
         orderNubmer++;
         this.orderID = orderNubmer;
@@ -48,6 +49,12 @@ public class Order {
         return total;
     }
 
+    /**
+     * Validates the order ensuring it contains at least one taco,
+     * or a drink/chips and salsa.
+     *
+     * @return true if order is valid, false otherwise
+     */
     public boolean isValidOrder() {
         boolean hasTaco = items.stream().anyMatch(item -> item instanceof Taco);
         boolean hasDrinkOrChips = items.stream().anyMatch(item -> item instanceof Drinks || item instanceof ChipsAndSalsa);
@@ -55,9 +62,15 @@ public class Order {
         return hasTaco || hasDrinkOrChips;
     }
 
+    /**
+     * Generates a formatted receipt string with all order details
+     * showing newest items first.
+     *
+     * @return formatted receipt as a String
+     */
     public String getReceiptText() {
         StringBuilder sb = new StringBuilder();
-        sb.append("===================================\n");
+        sb.append("\n===================================\n");
         sb.append("        Taco-Licious RECEIPT\n");
         sb.append("===================================\n");
         sb.append("Order ID: ").append(getOrderID()).append("\n");

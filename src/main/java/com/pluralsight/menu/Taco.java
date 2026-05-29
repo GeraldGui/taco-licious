@@ -105,6 +105,13 @@ public class Taco implements IPriceable {
         toppings.remove(index);
     }
 
+    /**
+     * Calculates the total price of the taco including base price,
+     * meat, and cheese based on taco size.
+     *
+     * @return the total price as a double
+     */
+
     @Override
     public double getPrice() {
         double base = switch (TacoSize.valueOf(size)) {
