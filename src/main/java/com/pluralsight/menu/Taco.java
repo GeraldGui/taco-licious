@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Taco implements IPriceable{
+public class Taco implements IPriceable {
     private String shell;
     private String size;
     private String meat;
@@ -45,7 +45,9 @@ public class Taco implements IPriceable{
         return size;
     }
 
-    public String getMeat() {return meat;}
+    public String getMeat() {
+        return meat;
+    }
 
     public String getCheese() {
         return cheese;
@@ -61,6 +63,26 @@ public class Taco implements IPriceable{
 
     public boolean isCoveredInSalsaAndQueso() {
         return coveredInSalsaAndQueso;
+    }
+
+    public List<ToppingType> getToppings() {
+        return toppings;
+    }
+
+    public void setShell(String shell) {
+        this.shell = shell;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setMeat(String meat) {
+        this.meat = meat;
+    }
+
+    public void setCheese(String cheese) {
+        this.cheese = cheese;
     }
 
     public void setSalsa(String salsa) {
@@ -79,6 +101,10 @@ public class Taco implements IPriceable{
         this.coveredInSalsaAndQueso = coveredInSalsaAndQueso;
     }
 
+    public void removeIngredient(int index) {
+        toppings.remove(index);
+    }
+
     @Override
     public double getPrice() {
         double base = switch (TacoSize.valueOf(size)) {
@@ -87,9 +113,9 @@ public class Taco implements IPriceable{
             case BURRITO -> 8.50;
         };
 
-        double meatPrice = new Meat(meat, hasExtraMeat).getPrice(size);
+        double meatPrice = (meat == null) ? 0.0 : new Meat(meat, hasExtraMeat).getPrice(size);
 
-        double cheesePrice = new Cheese(cheese, hasExtraCheese).getPrice(size);
+        double cheesePrice = (cheese == null) ? 0.0 : new Cheese(cheese, hasExtraCheese).getPrice(size);
 
         double total = base + meatPrice + cheesePrice;
 
@@ -99,11 +125,11 @@ public class Taco implements IPriceable{
     @Override
     public String toString() {
         return ("Taco: " + TacoSize.valueOf(size).getTacoSize() +
-                "\nShell: " + ShellType.valueOf(shell).getShellType() +
-                "\nMeat: " + MeatType.valueOf(meat).getMeatType() +
-                "\nCheese: " + CheeseType.valueOf(cheese).getCheeseType() +
+                "\nShell: " + (shell == null ? "No Shell" : ShellType.valueOf(shell).getShellType()) +
+                "\nMeat: " + (meat == null ? "No Meat" : MeatType.valueOf(meat).getMeatType()) +
+                "\nCheese: " + (cheese == null ? "No Cheese" : CheeseType.valueOf(cheese).getCheeseType()) +
                 "\nRegular Toppings: " + toppings.stream().map(ToppingType::getTopping).collect(Collectors.joining(", ")) +
-                "\nSauces: " + SalsaType.valueOf(salsa).getSauceType() +
+                "\nSauces: " + (salsa == null ? "No Salsa" : SalsaType.valueOf(salsa).getSauceType()) +
                 "\nCovered in salsa and queso: " + (isCoveredInSalsaAndQueso() ? "Yes" : "NO") +
                 "\nSides: " + SideType.valueOf(side).getSides());
     }

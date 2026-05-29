@@ -5,6 +5,7 @@ public enum ShellType {
 
     private final String shellType;
 
+
     ShellType(String shellType) {
         this.shellType = shellType;
     }

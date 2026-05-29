@@ -38,10 +38,6 @@ public class Order {
 
     public void addItem(IPriceable item) { items.add(item);}
 
-    public void removeItem() {
-
-    }
-
     public double getTotalPrice() {
         double total = 0;
 

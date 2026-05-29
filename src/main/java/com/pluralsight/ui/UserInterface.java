@@ -7,7 +7,9 @@ import com.pluralsight.menu.Taco;
 import com.pluralsight.order.Order;
 import com.pluralsight.order.ReceiptFileManager;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class UserInterface {
 
@@ -115,7 +117,7 @@ public class UserInterface {
             int extraCheese = getChoice(1, 2);
             boolean hasExtraCheese = extraCheese == 1;
 
-            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(),hasExtraCheese, null, false, null);
+            Taco taco = new Taco(tacoSize.name(), shell.name(), meat.name(), hasExtraMeat, cheese.name(), hasExtraCheese, null, false, null);
 
             while (true) {
                 ToppingType toppingType = chooseTopping();
@@ -124,7 +126,7 @@ public class UserInterface {
             }
             SalsaType salsaType = chooseSauce();
 
-            isCoveredInSalsaAndQueso();
+            isCoveredInSalsaAndQueso(taco);
 
             SideType sideType = chooseSide();
 
@@ -136,8 +138,9 @@ public class UserInterface {
             quit = true;
         }
     }
+
     public TacoSize chooseTacoSize() {
-        System.out.println("---------- Build Your Taco ----------");
+        System.out.println("\n---------- Build Your Taco ----------");
         System.out.println("1. Single");
         System.out.println("2. 3-Taco");
         System.out.println("3. Burrito");
@@ -157,7 +160,7 @@ public class UserInterface {
     }
 
     public ShellType chooseShell() {
-        System.out.println("---------- Select Your Shell ----------");
+        System.out.println("\n---------- Select Your Shell ----------");
         System.out.println("1. Corn");
         System.out.println("2. Flour");
         System.out.println("3. Hard Shell");
@@ -179,7 +182,7 @@ public class UserInterface {
     }
 
     public MeatType chooseMeat() {
-        System.out.println("---------- Select Your Meat ----------");
+        System.out.println("\n---------- Select Your Meat ----------");
         System.out.println("1. Carne Asada");
         System.out.println("2. Al Pastor");
         System.out.println("3. Carnitas");
@@ -205,7 +208,7 @@ public class UserInterface {
     }
 
     public CheeseType chooseCheese() {
-        System.out.println("---------- Select Your Cheese ----------");
+        System.out.println("\n---------- Select Your Cheese ----------");
         System.out.println("1. Queso Fresco");
         System.out.println("2. Oaxaca");
         System.out.println("3. Cotija");
@@ -227,7 +230,7 @@ public class UserInterface {
     }
 
     public ToppingType chooseTopping() {
-        System.out.println("---------- Select Your Toppings ----------");
+        System.out.println("\n---------- Select Your Toppings ----------");
         System.out.println("1. Lettuce");
         System.out.println("2. Cilantro");
         System.out.println("3. Onions");
@@ -260,7 +263,7 @@ public class UserInterface {
     }
 
     public SalsaType chooseSauce() {
-        System.out.println("---------- Select Your Sauce (Free) ----------");
+        System.out.println("\n---------- Select Your Sauce (Free) ----------");
         System.out.println("1. Salsa Verde");
         System.out.println("2. Salsa Roja");
         System.out.println("3. Chipotle");
@@ -288,7 +291,7 @@ public class UserInterface {
     }
 
     public SideType chooseSide() {
-        System.out.println("---------- Select Your Side ----------");
+        System.out.println("\n---------- Select Your Side ----------");
         System.out.println("1. Lime Wedges");
         System.out.println("2. Crema");
 
@@ -305,8 +308,8 @@ public class UserInterface {
         };
     }
 
-    public DrinkSize getDrinkSize(){
-        System.out.println("---------- Select Your Drink Size ----------");
+    public DrinkSize getDrinkSize() {
+        System.out.println("\n---------- Select Your Drink Size ----------");
         System.out.println("1. Small");
         System.out.println("2. Medium");
         System.out.println("3. Large");
@@ -326,7 +329,7 @@ public class UserInterface {
     }
 
     public DrinkType addDrinkType() {
-        System.out.println("---------- Select Your Drink ----------");
+        System.out.println("\n---------- Select Your Drink ----------");
         System.out.println("1. Coca-Coal");
         System.out.println("2. Pepsi");
         System.out.println("3. Sprite");
@@ -348,7 +351,7 @@ public class UserInterface {
     }
 
     public SalsaType addChipsAndSalsa() {
-        System.out.println("---------- Select Your Salsa ----------");
+        System.out.println("\n---------- Select Your Salsa ----------");
         System.out.println("1. Salsa Verde");
         System.out.println("2. Salsa Roja");
         System.out.println("3. Chipotle");
@@ -376,13 +379,13 @@ public class UserInterface {
 
     }
 
-    public void isCoveredInSalsaAndQueso() {
+    public void isCoveredInSalsaAndQueso(Taco taco) {
         System.out.println("Would you like the taco/burrito covered in salsa and queso?");
         System.out.println("1. Yes");
         System.out.println("2. No");
+        System.out.print("Enter your choice: ");
         int covered = getChoice(1, 2);
-
-        Taco taco = new Taco();
+        taco.setCoveredInSalsaAndQueso(covered == 1);
 
         if (covered == 1) {
             taco.setCoveredInSalsaAndQueso(true);
@@ -400,8 +403,7 @@ public class UserInterface {
                 }
 
                 System.out.println("Please enter valid number.");
-            }
-            else {
+            } else {
                 System.out.println("Invalid input.");
                 scanner.nextLine();
             }
@@ -412,18 +414,93 @@ public class UserInterface {
         Taco taco = new Taco(TacoSize.THREE_TACO.name(), ShellType.CORN.name(), MeatType.CARNE_ASADA.name(), false, CheeseType.QUESO_FRESCO.name(), false, SalsaType.SALSA_VERDE.name(), false, SideType.LIME_WEDGES.name());
         taco.addIngredients(ToppingType.valueOf(ToppingType.ONIONS.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.CILANTRO.name()));
+
+        System.out.println("\n" +taco);
+        removeItemFromTaco(taco);
+
+        while (true) {
+            System.out.println("Would you like to add a topping?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+
+            if (getChoice(1, 2) == 2) break;
+
+            ToppingType topping = chooseTopping();
+            if (topping != null) {
+                taco.addIngredients(topping);
+                System.out.println(taco); // show updated taco
+            }
+        }
+
         currentOrder.addItem(taco);
         System.out.println("Added Street Taco to order!\n");
     }
 
     public void superBurrito() {
-        Taco taco = new Taco(TacoSize.BURRITO.name(), ShellType.FLOUR.name(), MeatType.CARNITAS.name(), false, CheeseType.CHEDDAR.name(), false, SalsaType.NONE.name(), true,  SideType.LIME_WEDGES.name());
+        Taco taco = new Taco(TacoSize.BURRITO.name(), ShellType.FLOUR.name(), MeatType.CARNITAS.name(), false, CheeseType.CHEDDAR.name(), false, SalsaType.NONE.name(), true, SideType.LIME_WEDGES.name());
         taco.addIngredients(ToppingType.valueOf(ToppingType.PICO_DE_GALLO.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.LETTUCE.name()));
         taco.addIngredients(ToppingType.valueOf(ToppingType.TOMATOES.name()));
+
+        System.out.println("\n" + taco);
+        removeItemFromTaco(taco);
+
+        while (true) {
+            System.out.println("Would you like to add a topping?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+
+            if (getChoice(1, 2) == 2) break;
+
+            ToppingType topping = chooseTopping();
+            if (topping != null) {
+                taco.addIngredients(topping);
+                System.out.println(taco); // show updated taco
+            }
+        }
+
         currentOrder.addItem(taco);
         System.out.println("Added Street Taco to order!\n");
     }
+
+    public void removeItemFromTaco(Taco taco) {
+        while (true) {
+            System.out.println("\nWould you like to remove from the taco/burrito??");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            System.out.print("Enter your choice: ");
+            int removeItem = getChoice(1, 2);
+
+            if (removeItem == 2) break;
+
+            System.out.println("\nWhat Item are you removing?");
+            System.out.println("1. Shell");
+            System.out.println("2. Meat");
+            System.out.println("3. Cheese");
+            System.out.println("4. Salsa");
+            System.out.println("5. Toppings");
+
+            System.out.print("Enter your choice: ");
+            int choice = getChoice(1, 5);
+
+            switch (choice) {
+                case 1 -> taco.setShell(null);
+                case 2 -> taco.setMeat(null);
+                case 3 -> taco.setCheese(null);
+                case 4 -> taco.setSalsa(null);
+                case 5 -> {
+                    System.out.println("Which topping?");
+                    List<ToppingType> topping = taco.getToppings();
+                    IntStream.range(0, topping.size()).forEach(i -> System.out.println((i + 1) + ". " + topping.get(i).getTopping()));
+
+                    int toppingChoice = getChoice(1, topping.size());
+                    taco.removeIngredient(toppingChoice - 1);
+                }
+            }
+            System.out.println("\n" + taco);
+        }
+    }
+
 
     public void checkout() {
         if (!currentOrder.isValidOrder()) {
@@ -444,9 +521,6 @@ public class UserInterface {
             currentOrder = null;
             System.out.println("Order Canceled!");
         }
-
-
-
 
 
     }
