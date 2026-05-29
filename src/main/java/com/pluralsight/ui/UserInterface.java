@@ -423,7 +423,7 @@ public class UserInterface {
         taco.addIngredients(ToppingType.valueOf(ToppingType.CILANTRO.name()));
 
         System.out.println(RED + "\n---------- Street Taco ----------" + RESET);
-        System.out.println("\n" +taco);
+        System.out.println("\n" + taco);
         removeItemFromTaco(taco);
         addATopping(taco);
 
@@ -499,7 +499,6 @@ public class UserInterface {
             System.out.println("\n" + taco);
         }
     }
-
 
     public void checkout() {
         if (!currentOrder.isValidOrder()) {

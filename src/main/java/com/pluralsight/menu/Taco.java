@@ -93,6 +93,11 @@ public class Taco implements IPriceable {
         this.side = side;
     }
 
+    /**
+     * Adds a topping to the taco's ingredient list.
+     *
+     * @param regularTopping the ToppingType to add
+     */
     public void addIngredients(ToppingType regularTopping) {
         toppings.add(regularTopping);
     }

@@ -23,6 +23,6 @@ public class Drinks implements IPriceable {
 
     @Override
     public String toString() {
-        return "Drink: " +  DrinkSize.valueOf(size).getDrinkSize() + " " + DrinkType.valueOf(flavor).getSodaType();
+        return "Drink: " + DrinkSize.valueOf(size).getDrinkSize() + " " + DrinkType.valueOf(flavor).getSodaType();
     }
 }

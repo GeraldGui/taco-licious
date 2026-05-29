@@ -38,12 +38,14 @@ public class Order {
         return items;
     }
 
-    public void addItem(IPriceable item) { items.add(item);}
+    public void addItem(IPriceable item) {
+        items.add(item);
+    }
 
     public double getTotalPrice() {
         double total = 0;
 
-        for (IPriceable item: items) {
+        for (IPriceable item : items) {
             total += item.getPrice();
         }
         return total;

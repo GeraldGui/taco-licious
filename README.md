@@ -20,6 +20,10 @@ receipts displaying the customer’s final order and total cost.
 - As a customer I would like to be able to add Tacos/Burriots so that I can add them to my order.
 - As a customer I would like to have a receipt so that I can know what I paid for.
 
+## Diagram
+
+![Taco Shop Diagram](Taco_Shop_Diagram.png)
+
 ## Setup
 
 Instructions on how to set up and run the project using IntelliJ IDEA.

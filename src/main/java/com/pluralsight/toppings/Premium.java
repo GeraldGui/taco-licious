@@ -2,7 +2,7 @@ package com.pluralsight.toppings;
 
 import com.pluralsight.enums.TacoSize;
 
-public class Premium extends Toppings{
+public class  Premium extends Toppings {
     protected boolean hasExtra;
     protected String size;
 

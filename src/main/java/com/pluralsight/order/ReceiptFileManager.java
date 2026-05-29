@@ -19,7 +19,7 @@ public class ReceiptFileManager {
         try {
             Path path = Path.of("receipts/" + fileName);
             Files.createDirectories(Path.of("receipts"));
-            Files.writeString(path,order.getReceiptText());
+            Files.writeString(path, order.getReceiptText());
             System.out.println("Receipt saved: " + fileName);
         } catch (IOException e) {
             System.out.println("Failed to save receipt!");

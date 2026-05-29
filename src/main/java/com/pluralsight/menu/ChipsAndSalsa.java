@@ -2,7 +2,7 @@ package com.pluralsight.menu;
 
 import com.pluralsight.enums.SalsaType;
 
-public class ChipsAndSalsa implements IPriceable{
+public class ChipsAndSalsa implements IPriceable {
     private String salsaType;
 
     public ChipsAndSalsa(String salsaType) {
